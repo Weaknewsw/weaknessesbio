@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEAKNESSES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Audiowide&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        /* ОСНОВНЫЕ СТИЛИ */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #000 url('https://i.pinimg.com/736x/ba/9a/d6/ba9ad621432add8a329932da5cb420f9.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ff0000;
+            font-family: 'Audiowide', cursive;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff0000" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/></svg>'), auto;
+        }
+
+        /* СЕКЦИИ */
+        .section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* ГЛАВНЫЙ ЭКРАН */
+        #main-screen {
+            text-align: center;
+        }
+        .main-btn {
+            padding: 15px 40px;
+            background: rgba(20, 0, 0, 0.7);
+            color: #ff0000;
+            border: 2px solid #ff0000;
+            font-size: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            margin: 20px;
+        }
+        .main-btn:hover {
+            background: rgba(80, 0, 0, 0.5);
+            box-shadow: 0 0 25px #ff0000;
+            transform: translateY(-3px);
+        }
+
+        /* СЕКЦИЯ BIO */
+        .bio-text {
+            font-size: 32px;
+            text-align: center;
+            line-height: 1.5;
+            text-transform: uppercase;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 0 10px #ff0000;
+            padding: 0 20px;
+        }
+        .blood-stain {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        /* СЕКЦИЯ PRICE */
+        .services {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .service {
+            width: 280px;
+            padding: 20px;
+            background: rgba(20, 0, 0, 0.7);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px #ff0000;
+        }
+        .service-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px #ff0000);
+        }
+        .service h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff5555;
+            text-shadow: 0 0 5px #ff0000;
+        }
+        .service .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 8px #ff0000;
+            margin: 20px 0;
+        }
+        .buy-btn {
+            padding: 10px 25px;
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff0000;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .buy-btn:hover {
+            background: rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        /* НАВИГАЦИЯ */
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        .nav-btn {
+            padding: 8px 20px;
+            background: transparent;
+            color: #ff0000;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .nav-btn:hover {
+            text-shadow: 0 0 10px #ff0000;
+        }
+        .nav-btn.active {
+            background: rgba(255, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        /* ТРИ ТОЧКИ */
+        .side-dots {
+            position: fixed;
+            left: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 0, 0, 0.3);
+            transition: all 0.3s;
+            box-shadow: 0 0 5px #ff0000;
+        }
+        .dot:hover {
+            background: #ff0000;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        /* ПАНЕЛЬ КОНТАКТОВ */
+        .side-panel {
+            position: fixed;
+            left: -300px;
+            bottom: 30px;
+            width: 250px;
+            background: rgba(20, 0, 0, 0.9);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: all 0.5s;
+            z-index: 90;
+            color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        .side-panel p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+        }
+        .side-panel .signature {
+            font-size: 14px;
+            text-align: right;
+            margin-top: 15px;
+            color: #ff5555;
+        }
+        .side-dots:hover ~ .side-panel {
+            left: 80px;
+        }
+
+        /* КРОВАВЫЕ КАПЛИ */
+        .blood-drops {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .blood-drop {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ff0000;
+            border-radius: 50%;
+            filter: blur(0.5px);
+            animation: falling linear infinite;
+        }
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) translateX(30px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Кровавые капли на фоне -->
+    <div class="blood-drops" id="bloodDrops"></div>
+
+    <!-- Три точки и панель контактов -->
+    <div class="side-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <div class="side-panel">
+        <p>Для связи писать в Telegram:</p>
+        <p>@Weaknessesllll_bot</p>
+        <div class="signature">by weaknesses</div>
+    </div>
+
+    <!-- Навигационные кнопки -->
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="window.location.href='#main-screen'">ГЛАВНАЯ</button>
+        <button class="nav-btn" onclick="window.location.href='#bio'">BIO</button>
+        <button class="nav-btn" onclick="window.location.href='#price'">PRICE</button>
+    </div>
+
+    <!-- Главный экран -->
+    <section id="main-screen" class="section">
+        <h1 style="font-size: 48px; text-shadow: 0 0 15px #ff0000;">WEAKNESSES</h1>
+        <button class="main-btn" onclick="window.location.href='#bio'">BIO</button>
+        <button class="main-btn" onclick="window.location.href='#price'">PRICE</button>
+    </section>
+
+    <!-- Секция BIO -->
+    <section id="bio" class="section">
+        <div class="blood-stain" style="top: 10%; left: 15%;"></div>
+        <div class="blood-stain" style="bottom: 10%; right: 15%;"></div>
+        <div class="bio-text">
+            BIO WEAKNESSES<br>
+            ТУПОЙ ИДИОТ КОТОРЫЙ СОШЕЛ С УМА<br>
+            ЛУЧШЕ НЕ ПОКУПАТЬ У НЕГО НИЧЕГО<br>
+            ТУПОГОЛОВЫЙ ЕБАНАТ
+        </div>
+        <button class="main-btn" onclick="window.location.href='#price'">PRICE</button>
+    </section>
+
+    <!-- Секция PRICE -->
+    <section id="price" class="section">
+        <div class="services">
+            <div class="service">
+                <img src="https://i.pinimg.com/736x/74/fa/a2/74faa289814d83e2a436928c71e02b6d.jpg" class="service-image" alt="ДЕФ">
+                <h3>ДЕФ</h3>
+                <div class="price">300 ₽</div>
+                <button class="buy-btn" onclick="window.open('https://t.me/Weaknessesllll_bot', '_blank')">BUY</button>
+            </div>
+            <div class="service">
+                <img src="https://i.pinimg.com/736x/2a/a8/b9/2aa8b9a1cceaea0aa42d0bc78e40b509.jpg" class="service-image" alt="Коуч в Dota 2">
+                <h3>КОУЧ В DOTA 2</h3>
+                <div class="price">1200 ₽</div>
+                <button class="buy-btn" onclick="window.open('https://t.me/Weaknessesllll_bot', '_blank')">BUY</button>
+            </div>
+            <div class="service">
+                <img src="https://i.pinimg.com/736x/a5/f0/2d/a5f02dfb40a59019548250280ca23cc0.jpg" class="service-image" alt="Лобак на SF 1x1">
+                <h3>ЛОБАК НА SF 1x1</h3>
+                <div class="price">666 ₽</div>
+                <button class="buy-btn" onclick="window.open('https://t.me/Weaknessesllll_bot', '_blank')">BUY</button>
+            </div>
+        </div>
+        <button class="main-btn" style="margin-top: 50px;" onclick="window.location.href='#bio'">BIO</button>
+    </section>
+
+    <!-- Скрипты -->
+    <script>
+        // Создаем падающие капли крови
+        const bloodContainer = document.getElementById('bloodDrops');
+        
+        function createBloodDrop() {
+            const drop = document.createElement('div');
+            drop.classList.add('blood-drop');
+            drop.style.left = `${Math.random() * 100}%`;
+            drop.style.opacity = Math.random() * 0.5;
+            drop.style.animationDuration = `${2 + Math.random() * 3}s`;
+            bloodContainer.appendChild(drop);
+            
+            setTimeout(() => {
+                drop.remove();
+            }, 5000);
+        }
+        
+        setInterval(createBloodDrop, 100);
+
+        // Активация кнопок навигации при скролле
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    navButtons[index].classList.add('active');
+                }
+            });
+        });
+
+        // Звук при наведении на кнопки
+        const buttons = document.querySelectorAll('.main-btn, .buy-btn, .nav-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const sound = new Audio('https://www.myinstants.com/media/sounds/blood-drip.mp3');
+                sound.volume = 0.2;
+                sound.play();
+            });
+        });
+
+        // Звук при переходе между секциями
+        const links = document.querySelectorAll('[href^="#"]');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                const sound = new Audio('https://www.myinstants.com/media/sounds/demon-growl.mp3');
+                sound.volume = 0.3;
+                sound.play();
+            });
+        });
+    </script>
+</body>
+</html>
